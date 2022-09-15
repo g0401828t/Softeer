@@ -1,0 +1,38 @@
+import sys
+
+T = int(input())
+
+# 0부터 9까지
+data = [[1, 1, 1, 1, 1, 1, 0],
+        [0, 1, 1, 0, 0, 0, 0],
+        [1, 1, 0, 1, 1, 0, 1],
+        [1, 1, 1, 1, 0, 0, 1],
+        [0, 1, 1, 0, 0, 1, 1],
+        [1, 0, 1, 1, 0, 1, 1],
+        [1, 0, 1, 1, 1, 1, 1],
+        [1, 1, 1, 0, 0, 1, 0],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 0, 1, 1]]
+
+def Test(a, b):
+    x = [data[int(i)] for i in str(a)]
+    y = [data[int(i)] for i in str(b)]
+        
+    if len(x) > len(y):
+        n = len(x) - len(y)
+        y = ([[0, 0, 0, 0, 0, 0, 0]] * n) + y
+    else:
+        n = len(y) - len(x)
+        x = ([[0, 0, 0, 0, 0, 0, 0]] * n) + x
+    
+    count = 0
+    for i in range(len(x)):
+        xx, yy = x[i], y[i]
+        for j in range(7):
+            if xx[j] != yy[j]:
+                count += 1
+    print(count)
+
+for t in range(T):
+    A, B = map(int, sys.stdin.readline().split())
+    Test(A, B)
